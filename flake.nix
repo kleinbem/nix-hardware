@@ -44,6 +44,7 @@
       flake = {
         nixosModules = {
           nixos-nvme = import ./nixos-nvme.nix;
+          intel-compute = import ./intel-compute.nix;
         };
       };
     };
