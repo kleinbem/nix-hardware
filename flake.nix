@@ -10,36 +10,47 @@
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ flake-parts, ... }:
+  outputs =
+    inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
 
-      perSystem = { config, pkgs, system, ... }: {
-        # Formatting
-        treefmt = {
-          projectRootFile = "flake.nix";
-          programs.nixfmt.enable = true;
-        };
+      perSystem =
+        {
+          config,
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          # Formatting
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = true;
+          };
 
-        # Pre-commit checks
-        checks.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            nixfmt.enable = true;
+          # Pre-commit checks
+          checks.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixfmt.enable = true;
+            };
+          };
+
+          # DevShell
+          devShells.default = pkgs.mkShell {
+            shellHook = ''
+              ${config.checks.pre-commit-check.shellHook}
+              echo "🔧 Hardware Flake DevEnv"
+            '';
+            buildInputs = [
+              pkgs.nixfmt
+            ];
           };
         };
-
-        # DevShell
-        devShells.default = pkgs.mkShell {
-          shellHook = ''
-            ${config.checks.pre-commit-check.shellHook}
-            echo "🔧 Hardware Flake DevEnv"
-          '';
-          buildInputs = [
-            pkgs.nixfmt
-          ];
-        };
-      };
 
       flake = {
         nixosModules = {
@@ -49,3 +60,4 @@
       };
     };
 }
+# Bump
