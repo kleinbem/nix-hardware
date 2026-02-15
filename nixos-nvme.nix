@@ -26,12 +26,12 @@
       ];
       kernelModules = [ "dm-snapshot" ];
 
-      luks.devices."cryptroot" = {
-        device = "/dev/disk/by-uuid/1f46beca-dc9a-481b-86fe-275a697e3dc2";
-        preLVM = true;
-        # --- ADDED: Allow unlocking with FIDO2 (YubiKey) ---
-        crypttabExtraOpts = [ "fido2-device=auto" ];
-      };
+      # luks.devices."cryptroot" = {
+      #   device = "/dev/disk/by-uuid/1f46beca-dc9a-481b-86fe-275a697e3dc2";
+      #   preLVM = true;
+      #   # --- ADDED: Allow unlocking with FIDO2 (YubiKey) ---
+      #   crypttabExtraOpts = [ "fido2-device=auto" ];
+      # };
 
       services.lvm.enable = true;
     };
@@ -40,45 +40,45 @@
     extraModulePackages = [ ];
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/mapper/vg0-root";
-      fsType = "ext4";
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/D223-DA20";
-      fsType = "vfat";
-      options = [
-        "fmask=0022"
-        "dmask=0022"
-      ];
-    };
-
-    "/var" = {
-      device = "/dev/mapper/vg0-var";
-      fsType = "ext4";
-    };
-
-    "/home" = {
-      device = "/dev/mapper/vg0-home";
-      fsType = "btrfs";
-    };
-
-    "/nix" = {
-      device = "/dev/mapper/vg0-nix";
-      fsType = "btrfs";
-    };
-
-    "/images" = {
-      device = "/dev/mapper/vg0-images";
-      fsType = "ext4";
-    };
-  };
-
-  swapDevices = [
-    { device = "/dev/mapper/vg0-swap"; }
-  ];
+  # fileSystems = {
+  #   "/" = {
+  #     device = "/dev/mapper/vg0-root";
+  #     fsType = "ext4";
+  #   };
+  #
+  #   "/boot" = {
+  #     device = "/dev/disk/by-uuid/D223-DA20";
+  #     fsType = "vfat";
+  #     options = [
+  #       "fmask=0022"
+  #       "dmask=0022"
+  #     ];
+  #   };
+  #
+  #   "/var" = {
+  #     device = "/dev/mapper/vg0-var";
+  #     fsType = "ext4";
+  #   };
+  #
+  #   "/home" = {
+  #     device = "/dev/mapper/vg0-home";
+  #     fsType = "btrfs";
+  #   };
+  #
+  #   "/nix" = {
+  #     device = "/dev/mapper/vg0-nix";
+  #     fsType = "btrfs";
+  #   };
+  #
+  #   "/images" = {
+  #     device = "/dev/mapper/vg0-images";
+  #     fsType = "ext4";
+  #   };
+  # };
+  #
+  # swapDevices = [
+  #   { device = "/dev/mapper/vg0-swap"; }
+  # ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
