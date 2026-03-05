@@ -13,7 +13,10 @@
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
       imports = [
         inputs.treefmt-nix.flakeModule
       ];
@@ -56,6 +59,8 @@
         nixosModules = {
           nixos-nvme = import ./nixos-nvme.nix;
           intel-compute = import ./intel-compute.nix;
+          rpi5 = import ./rpi5.nix;
+          lxc-guest = import ./lxc-guest.nix;
         };
       };
     };
