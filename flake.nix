@@ -8,6 +8,10 @@
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    nix-devshells.url = "path:../nix-devshells";
+    nix-devshells.inputs.nixpkgs.follows = "nixpkgs";
+
+    jetpack-nixos.url = "github:anduril/jetpack-nixos";
   };
 
   outputs =
@@ -17,9 +21,7 @@
         "x86_64-linux"
         "aarch64-linux"
       ];
-      imports = [
-        inputs.treefmt-nix.flakeModule
-      ];
+      imports = [ ];
 
       perSystem =
         {
@@ -29,11 +31,7 @@
           ...
         }:
         {
-          # Formatting
-          treefmt = {
-            projectRootFile = "flake.nix";
-            programs.nixfmt.enable = true;
-          };
+          formatter = inputs.nix-devshells.formatter.${system};
 
           # Pre-commit checks
           checks.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
@@ -64,6 +62,7 @@
           nixos-nvme = import ./nixos-nvme.nix;
           intel-compute = import ./intel-compute.nix;
           rpi5 = import ./rpi5.nix;
+          orin-nano = import ./orin-nano.nix;
           lxc-guest = import ./lxc-guest.nix;
         };
       };
