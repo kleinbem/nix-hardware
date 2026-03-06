@@ -4,13 +4,15 @@
 
 {
   # LXC guests share the host kernel — don't build one
-  boot.isContainer = true;
+  boot = {
+    isContainer = true;
 
-  # No bootloader needed
-  boot.loader.grub.enable = false;
+    # No bootloader needed
+    loader.grub.enable = false;
 
-  # No initrd in containers
-  boot.initrd.enable = false;
+    # No initrd in containers
+    initrd.enable = false;
+  };
 
   # Minimal filesystem (host provides the root)
   fileSystems."/" = lib.mkDefault {
