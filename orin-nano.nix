@@ -15,6 +15,17 @@
     carrierBoard = "devkit"; # Devkit carrier
   };
 
+  # ─── Performance & Optimization ────────────────────────────
+  # Orin Nano 8GB is RAM-limited, ZRAM is essential
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50; # 4GB of ZRAM for better LLM headroom
+  };
+
+  # Maximize CPU performance
+  powerManagement.cpuFreqGovernor = "performance";
+
   # ─── Storage & Boot ────────────────────────────────────────
   # NVMe is preferred for Orin Nano performance
   boot = {
