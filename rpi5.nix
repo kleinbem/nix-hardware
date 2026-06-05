@@ -4,8 +4,7 @@
 {
   # Boot — RPi uses U-Boot or direct kernel with extlinux
   boot = {
-    # Kernel — use the latest stable aarch64 kernel
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_rpi4;
 
     loader = {
       grub.enable = false;
