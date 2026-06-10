@@ -816,11 +816,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1780334549,
-        "narHash": "sha256-SVmtu81BtkU+3+6CQvarnijlwLunY64CVH+e3GsSl8s=",
+        "lastModified": 1780958122,
+        "narHash": "sha256-+Bi25eN2elnxgXcfr+WEzN3O0XuMLOC4wG8olWOOuoY=",
         "owner": "anduril",
         "repo": "jetpack-nixos",
-        "rev": "4a4e93a7b3fbe1915870ec54002c616f01367195",
+        "rev": "784def1105cf561e1c7e229aecd14179645ac98f",
         "type": "github"
       },
       "original": {
@@ -907,11 +907,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1780934593,
-        "narHash": "sha256-XOCxZwLNoHwRl7Wh4b7hm3GhKkW5vP7NWrm8qRvaxU8=",
+        "lastModified": 1780982758,
+        "narHash": "sha256-VbL1PH69rjTEHE4pnMR51Hc/9Y7nABAHjWWOrOA6Rqg=",
         "ref": "refs/heads/main",
-        "rev": "012d0a2f4bf2215866b2f8848b03c121067de963",
-        "revCount": 95,
+        "rev": "436cb4f9c01cc1f8fe883720a17c5671853147b8",
+        "revCount": 97,
         "type": "git",
         "url": "file:///home/martin/Develop/github.com/kleinbem/nix/nix-devshells"
       },
@@ -1083,11 +1083,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1780956837,
-        "narHash": "sha256-L4ym2V8ueRLVzxWgvp3VtKAuIFXhdXYVavMOs2cGvtg=",
+        "lastModified": 1781014491,
+        "narHash": "sha256-hVprTp3IQvM+seW8SKSpeD7zyHRpkL+pIkSwr1Z3aMQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fc18a841b67c97077381ea24cb5e37d3f07dfa24",
+        "rev": "034168e8ff7e07f82f31d273eb48ad8f64c447e9",
         "type": "github"
       },
       "original": {
@@ -1325,11 +1325,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780888890,
-        "narHash": "sha256-MUQPFiskEENaJ2N82TRIqpKlHXGXJJkPfKH6W788oQo=",
+        "lastModified": 1780975129,
+        "narHash": "sha256-428T1pLXnbVeUgZx2wWEkbvl3ZORjras34ANZ3ACp5A=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "7d5f8d75fc195a236b46633d7679139698aeb35f",
+        "rev": "fe64e6b409dc513274d2941f8da13bbd0fdcf44e",
         "type": "github"
       },
       "original": {
