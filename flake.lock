@@ -816,11 +816,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1781195859,
-        "narHash": "sha256-PxcvxfUTajf+FIZKDGBB2S2EWer16Qr9Sz31nneLNUE=",
+        "lastModified": 1781557717,
+        "narHash": "sha256-b4jbCPNZBXUBOjwOh8k5vE94IpIbEU0GYUekl4nPWZI=",
         "owner": "anduril",
         "repo": "jetpack-nixos",
-        "rev": "f7f939fe05c69befa961116f57e00a157827580e",
+        "rev": "7e5e6e478ccfbf5422dcc7e4c3711a8ac75f76b9",
         "type": "github"
       },
       "original": {
@@ -907,11 +907,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1781550471,
-        "narHash": "sha256-J04RHPrynhcTIWPZCKf6sxVeuw8nw/BcZni1QRCsLW8=",
+        "lastModified": 1781559675,
+        "narHash": "sha256-Cvm9wcPBsgoGle4tp5wHvXCHmEbC7mT7coJQgHU82i8=",
         "ref": "refs/heads/main",
-        "rev": "2c42e69297e89a5a032eca825c01dd4812dbea03",
-        "revCount": 128,
+        "rev": "f3ee91a0f102088a9bcadb806b5696061ff39284",
+        "revCount": 129,
         "type": "git",
         "url": "file:///home/martin/Develop/github.com/kleinbem/nix/nix-devshells"
       },
@@ -1083,11 +1083,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1781549363,
-        "narHash": "sha256-HPjUbxS5gu5ZTRyXXnzvEMn15+MFLzMTow2Oqd+dcu0=",
+        "lastModified": 1781558952,
+        "narHash": "sha256-2xF00n+/hMoAqaoFQdcsJwDysk+ZLES5Ki7K046y/xQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c008fbacb71a3b46322165730505c5fa88083320",
+        "rev": "9214c62a66d958ec8f1a40558dab61fd48f9351b",
         "type": "github"
       },
       "original": {
