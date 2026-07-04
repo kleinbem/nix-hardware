@@ -1,5 +1,5 @@
 # rpi5.nix — Raspberry Pi 5 hardware profile
-{ pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   # Boot — RPi uses U-Boot or direct kernel with extlinux
