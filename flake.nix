@@ -12,6 +12,7 @@
     nix-devshells.inputs.nixpkgs.follows = "nixpkgs";
 
     jetpack-nixos.url = "github:anduril/jetpack-nixos";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs =
@@ -61,7 +62,12 @@
         nixosModules = {
           nixos-nvme = import ./nixos-nvme.nix;
           intel-compute = import ./intel-compute.nix;
-          rpi5 = import ./rpi5.nix;
+          rpi5 = {
+            imports = [
+              inputs.nixos-hardware.nixosModules.raspberry-pi-5
+              ./rpi5.nix
+            ];
+          };
           orin-nano = import ./orin-nano.nix;
           lxc-guest = import ./lxc-guest.nix;
         };

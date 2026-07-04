@@ -4,12 +4,6 @@
 {
   # Boot — RPi uses U-Boot or direct kernel with extlinux
   boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_rpi4;
-
-    loader = {
-      grub.enable = false;
-      generic-extlinux-compatible.enable = lib.mkDefault true;
-    };
 
     # Console on serial (useful for headless debugging)
     kernelParams = [
