@@ -348,11 +348,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1786469366,
-        "narHash": "sha256-Yluvq6Fw7wocxrM2M8XM+x3OeBqy/FfMn+goNrtb+aY=",
+        "lastModified": 1786998629,
+        "narHash": "sha256-h+s0VaGO2WFQX2ME+fRVOY2oKb/EUDzMagpYOxUM6wM=",
         "owner": "anduril",
         "repo": "jetpack-nixos",
-        "rev": "cfce7e3fc84b7d13ef82b48f3fb821409d9416b2",
+        "rev": "a3d955a85d1c2dd6d311f76bbc901d56094d337d",
         "type": "github"
       },
       "original": {
