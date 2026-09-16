@@ -12,10 +12,6 @@ Reusable NixOS hardware modules, one per board/platform.
 | `lxc-guest` | `lxc-guest.nix` | LXC guest hardware profile |
 | `rpi5` | (composed in `flake.nix`) | Raspberry Pi 5, wraps `nixos-hardware`'s upstream module |
 
-Note: `README.md` only documents `nixos-nvme` — check `flake.nix`'s
-`nixosModules` attrset (source of truth) before assuming a module doesn't
-exist here.
-
 ## Conventions
 
 - One file per board; import the matching `nixosModules.<name>` from a
