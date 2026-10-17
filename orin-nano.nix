@@ -51,6 +51,31 @@
     };
     # Enable the serial console for debugging
     kernelParams = [ "console=ttyTCU0,115200" ];
+
+    # NVIDIA's JetPack defconfig leaves out nftables pieces the fleet relies
+    # on: the NixOS nftables firewall (fib reverse-path check, ct state) and
+    # nix-gantry's zero-trust egress table (ct state). Without them every
+    # container's ruleset fails to load here, so Frigate, llama-cpp and
+    # syncthing ran with no firewall and no egress restriction.
+    kernelPatches = [
+      {
+        name = "nftables-fleet";
+        patch = null;
+        structuredExtraConfig = with lib.kernel; {
+          NFT_CT = module;
+          NFT_FIB_IPV4 = module;
+          NFT_FIB_IPV6 = module;
+          NFT_FIB_INET = module;
+          NFT_REDIR = module;
+          NFT_LIMIT = module;
+          NFT_HASH = module;
+          NFT_NUMGEN = module;
+          NFT_QUOTA = module;
+          NFT_OBJREF = module;
+          NFT_CONNLIMIT = module;
+        };
+      }
+    ];
   };
 
   # Support for CUDA and hardware acceleration
