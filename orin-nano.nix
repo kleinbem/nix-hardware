@@ -28,19 +28,12 @@
   # Maximize CPU performance
   powerManagement.cpuFreqGovernor = "performance";
 
-  # Force the Jetson into MAXN power mode on every boot — the default is
-  # mode 1 (15W); mode 0 (MAXN) removes the cap so AI inference can use the
-  # full GPU. nvpmodel is from jetpack-nixos; the boot service is idempotent.
-  systemd.services.jetson-maxn = {
-    description = "Set Jetson nvpmodel to MAXN (unrestricted) at boot";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = "/run/current-system/sw/bin/nvpmodel -m 0";
-    };
-  };
+  # The power profile is the host's choice: nix-config sets it with
+  # jetpack-nixos' services.nvpmodel (profile 2 = MAXN_SUPER). With the Super
+  # firmware the profiles are 0 = 15W, 1 = 25W, 2 = MAXN_SUPER, so a boot unit
+  # that ran `nvpmodel -m 0` here (from the pre-Super numbering, where 0 was
+  # MAXN) put the board back to 15W right after that service had applied
+  # profile 2.
 
   # ─── Storage & Boot ────────────────────────────────────────
   # NVMe is preferred for Orin Nano performance
