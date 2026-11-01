@@ -16,9 +16,8 @@
   };
 
   # ─── Performance & Optimization ────────────────────────────
-  # Orin Nano 8GB is RAM-limited, ZRAM is essential. Bumped from 50% → 75%
-  # to give AI workloads (Frigate + llama-cpp) more compressed spillover head-
-  # room. base.nix sets 50% as the fleet default; mkForce overrides it here.
+  # 8GB RAM: give Frigate + llama-cpp more compressed headroom than the fleet
+  # default (50%, nix-config modules/nixos/core.nix); mkForce overrides it.
   zramSwap = {
     enable = lib.mkForce true;
     algorithm = lib.mkForce "zstd";
@@ -28,12 +27,8 @@
   # Maximize CPU performance
   powerManagement.cpuFreqGovernor = "performance";
 
-  # The power profile is the host's choice: nix-config sets it with
-  # jetpack-nixos' services.nvpmodel (profile 2 = MAXN_SUPER). With the Super
-  # firmware the profiles are 0 = 15W, 1 = 25W, 2 = MAXN_SUPER, so a boot unit
-  # that ran `nvpmodel -m 0` here (from the pre-Super numbering, where 0 was
-  # MAXN) put the board back to 15W right after that service had applied
-  # profile 2.
+  # No power profile here: the host sets it via services.nvpmodel. With the
+  # Super firmware 0 = 15W (not MAXN), so an `nvpmodel -m 0` here would undo it.
 
   # ─── Storage & Boot ────────────────────────────────────────
   # NVMe is preferred for Orin Nano performance
@@ -45,11 +40,9 @@
     # Enable the serial console for debugging
     kernelParams = [ "console=ttyTCU0,115200" ];
 
-    # NVIDIA's JetPack defconfig leaves out nftables pieces the fleet relies
-    # on: the NixOS nftables firewall (fib reverse-path check, ct state) and
-    # nix-gantry's zero-trust egress table (ct state). Without them every
-    # container's ruleset fails to load here, so Frigate, llama-cpp and
-    # syncthing ran with no firewall and no egress restriction.
+    # JetPack's defconfig lacks nftables pieces the NixOS firewall (fib rpfilter,
+    # ct state) and nix-gantry's egress table need. Without them container
+    # rulesets fail to load and containers run with no firewall at all.
     kernelPatches = [
       {
         name = "nftables-fleet";
