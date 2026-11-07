@@ -40,7 +40,7 @@
     # JetPack's defconfig lacks nftables pieces the NixOS firewall (fib rpfilter,
     # ct state) and nix-gantry's egress table need. Without them container
     # rulesets fail to load and containers run with no firewall at all.
-    # tracking: kleinbem/nix-hardware#107 (report to anduril/jetpack-nixos)
+    # upstream: anduril/jetpack-nixos#593 (tracking: kleinbem/nix-hardware#107)
     kernelPatches = [
       {
         name = "nftables-fleet";
