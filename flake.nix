@@ -68,7 +68,12 @@
               ./rpi5.nix
             ];
           };
-          orin-nano = import ./orin-nano.nix;
+          orin-nano = {
+            imports = [
+              inputs.jetpack-nixos.nixosModules.default
+              ./orin-nano.nix
+            ];
+          };
           lxc-guest = import ./lxc-guest.nix;
         };
       };

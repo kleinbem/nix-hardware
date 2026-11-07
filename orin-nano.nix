@@ -1,11 +1,8 @@
 # orin-nano.nix — NVIDIA Jetson Orin Nano hardware module
-{ inputs, lib, ... }:
+# Import it through the flake's nixosModules.orin-nano, which adds jetpack-nixos.
+{ lib, ... }:
 
 {
-  imports = [
-    inputs.jetpack-nixos.nixosModules.default
-  ];
-
   # ─── Jetson Orin Nano Configuration ────────────────────────
   # carrier board: p3768 (Orin Nano / Orin NX devkit)
   # som: p3767 (Orin Nano 8GB)
@@ -43,6 +40,7 @@
     # JetPack's defconfig lacks nftables pieces the NixOS firewall (fib rpfilter,
     # ct state) and nix-gantry's egress table need. Without them container
     # rulesets fail to load and containers run with no firewall at all.
+    # tracking: kleinbem/nix-hardware#107 (report to anduril/jetpack-nixos)
     kernelPatches = [
       {
         name = "nftables-fleet";
