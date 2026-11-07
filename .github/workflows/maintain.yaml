@@ -1,0 +1,18 @@
+name: Maintain Flake
+on:
+  workflow_dispatch:
+  schedule:
+    # 02:15 UTC, after nix-devshells (02:00).
+    - cron: '15 2 * * *'
+
+# Nightly flake.lock PR, shared: kleinbem/actions' maintain-flake.
+permissions: {}
+
+jobs:
+  maintain:
+    uses: kleinbem/actions/.github/workflows/maintain-flake.yaml@4c768a74873b0de7772c1af40b777bacb7c68495 # v1.6.2
+    with:
+      nix-path: nixpkgs=channel:nixos-unstable
+    secrets:
+      app-id: ${{ secrets.APP_ID }}
+      app-private-key: ${{ secrets.APP_PRIVATE_KEY }}
