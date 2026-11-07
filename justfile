@@ -9,7 +9,7 @@ default:
 [group("Linter")]
 check:
     @echo "🔧 Verifying hardware modules flake..."
-    @nix flake check . --impure
+    @nix flake check . --keep-going
 
 [group("Linter")]
 fmt:
