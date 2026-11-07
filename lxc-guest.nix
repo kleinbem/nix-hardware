@@ -14,16 +14,7 @@
     initrd.enable = false;
   };
 
-  # Minimal filesystem (host provides the root)
-  fileSystems."/" = lib.mkDefault {
-    device = "none";
-    fsType = "tmpfs";
-    options = [
-      "defaults"
-      "size=2G"
-      "mode=755"
-    ];
-  };
+  # No fileSystems."/": the LXC host provides the root, and isContainer needs none.
 
   # Networking: let the LXC host manage
   networking.useDHCP = lib.mkDefault true;
