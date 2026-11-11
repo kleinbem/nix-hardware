@@ -65,7 +65,7 @@
           rpi5 = {
             imports = [
               inputs.nixos-hardware.nixosModules.raspberry-pi-5
-              ./rpi5.nix
+              (import ./rpi5.nix { inherit (inputs) nixos-hardware; })
             ];
           };
           orin-nano = {
