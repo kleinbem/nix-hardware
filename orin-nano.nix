@@ -13,12 +13,11 @@
   };
 
   # ─── Performance & Optimization ────────────────────────────
-  # 8GB RAM: give Frigate + llama-cpp more compressed headroom than the fleet
-  # default (50%, nix-config modules/nixos/core.nix); mkForce overrides it.
+  # Defaults only: the host config owns the size (nix-config keeps it at 25%
+  # so Frigate + the LLM keep physical RAM).
   zramSwap = {
-    enable = lib.mkForce true;
-    algorithm = lib.mkForce "zstd";
-    memoryPercent = lib.mkForce 75; # ~6GB ZRAM out of 8GB RAM
+    enable = lib.mkDefault true;
+    algorithm = lib.mkDefault "zstd";
   };
 
   # Maximize CPU performance
