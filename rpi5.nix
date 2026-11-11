@@ -1,16 +1,18 @@
 # rpi5.nix — Raspberry Pi 5 hardware profile
 { nixos-hardware }:
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # Boot — RPi uses U-Boot or direct kernel with extlinux
   boot = {
-    # The 6.18 vendor kernel's tools/ lack __u128, which Linux 7.3 headers use
-    # on arm64, so the kernel build fails. The upstream kernel.nix sets its own
-    # kernelPatches and drops boot.kernelPatches, so argsOverride is the only
-    # way in; it replaces upstream's list, keep it in sync. Drop this once
-    # upstream applies the patch (upstream: NixOS/nixos-hardware#2106).
-    # Above upstream's mkDefault, below a host's own choice.
+    # Upstream's kernel.nix drops boot.kernelPatches (upstream: NixOS/nixos-hardware#1745),
+    # so they go in through argsOverride, which replaces its list: keep the rest in sync.
+    # Priority 999 beats upstream's mkDefault; a host's own kernel still wins.
     kernelPackages = lib.mkOverride 999 (
       pkgs.linuxPackagesFor (
         pkgs.callPackage "${nixos-hardware}/raspberry-pi/common/kernel.nix" {
@@ -21,7 +23,8 @@
               bridge_stp_helper
               request_key_helper
             ]
-            ++ lib.optional (pkgs.kernelPatches ? tools_128bit_types) tools_128bit_types;
+            ++ lib.optional (pkgs.kernelPatches ? tools_128bit_types) tools_128bit_types
+            ++ config.boot.kernelPatches;
         }
       )
     );
