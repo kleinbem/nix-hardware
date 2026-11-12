@@ -1,6 +1,6 @@
 # orin-nano.nix — NVIDIA Jetson Orin Nano hardware module
 # Import it through the flake's nixosModules.orin-nano, which adds jetpack-nixos.
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   # ─── Jetson Orin Nano Configuration ────────────────────────
@@ -58,7 +58,10 @@
           NFT_CONNLIMIT = module;
         };
       }
-    ];
+    ]
+    # The L4T 5.15 tools/ lack __u128, which Linux 7.3 UAPI headers use on arm64.
+    # tracking: kleinbem/nix-hardware#122
+    ++ lib.optional (pkgs.kernelPatches ? tools_128bit_types) pkgs.kernelPatches.tools_128bit_types;
   };
 
   # Support for CUDA and hardware acceleration
