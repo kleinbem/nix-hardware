@@ -28,7 +28,7 @@
       services.lvm.enable = true;
     };
 
-    kernelModules = [ "kvm-intel" ];
+    # kvm-intel / kvm-amd load on their own from the CPU's vmx / svm flag.
     extraModulePackages = [ ];
   };
 
